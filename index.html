@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logic &amp; Semantics Notation Helper</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Academic math serif font stack */
+    .math-font {
+      font-family: 'Cambria Math', 'STIX Two Math', 'Latin Modern Math', 'Times New Roman', serif;
+    }
+
+    /* clean placeholder when the formula editor is empty */
+    #formula-canvas:empty:before {
+      content: attr(data-placeholder);
+      color: #94a3b8;
+      pointer-events: none;
+    }
+
+    /* subtle active click feel */
+    .btn-tactile:active {
+      transform: scale(0.96);
+    }
+  </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.pointer-events-none{pointer-events:none}.fixed{position:fixed}.inset-0{inset:0px}.bottom-5{bottom:1.25rem}.right-5{right:1.25rem}.z-50{z-index:50}.mx-0\.5{margin-left:0.125rem;margin-right:0.125rem}.mb-1{margin-bottom:0.25rem}.mb-1\.5{margin-bottom:0.375rem}.ml-auto{margin-left:auto}.mt-0\.5{margin-top:0.125rem}.mt-1{margin-top:0.25rem}.block{display:block}.flex{display:flex}.inline-flex{display:inline-flex}.hidden{display:none}.h-10{height:2.5rem}.h-4{height:1rem}.h-5{height:1.25rem}.min-h-\[110px\]{min-height:110px}.min-h-screen{min-height:100vh}.w-11{width:2.75rem}.w-4{width:1rem}.w-full{width:100%}.max-w-3xl{max-width:48rem}.max-w-sm{max-width:24rem}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:0.25rem}.gap-1\.5{gap:0.375rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.space-x-2\.5 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(0.625rem * var(--tw-space-x-reverse));margin-left:calc(0.625rem * calc(1 - var(--tw-space-x-reverse)))}.space-y-3 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.75rem * var(--tw-space-y-reverse))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.space-y-6 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem * var(--tw-space-y-reverse))}.rounded{border-radius:0.25rem}.rounded-2xl{border-radius:1rem}.rounded-lg{border-radius:0.5rem}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-2{border-width:2px}.border-b{border-bottom-width:1px}.border-l{border-left-width:1px}.border-t{border-top-width:1px}.border-indigo-200{--tw-border-opacity:1;border-color:rgb(199 210 254 / var(--tw-border-opacity, 1))}.border-slate-100{--tw-border-opacity:1;border-color:rgb(241 245 249 / var(--tw-border-opacity, 1))}.border-slate-200{--tw-border-opacity:1;border-color:rgb(226 232 240 / var(--tw-border-opacity, 1))}.border-slate-300{--tw-border-opacity:1;border-color:rgb(203 213 225 / var(--tw-border-opacity, 1))}.bg-emerald-600{--tw-bg-opacity:1;background-color:rgb(5 150 105 / var(--tw-bg-opacity, 1))}.bg-indigo-100{--tw-bg-opacity:1;background-color:rgb(224 231 255 / var(--tw-bg-opacity, 1))}.bg-indigo-50{--tw-bg-opacity:1;background-color:rgb(238 242 255 / var(--tw-bg-opacity, 1))}.bg-indigo-600{--tw-bg-opacity:1;background-color:rgb(79 70 229 / var(--tw-bg-opacity, 1))}.bg-slate-100{--tw-bg-opacity:1;background-color:rgb(241 245 249 / var(--tw-bg-opacity, 1))}.bg-slate-50{--tw-bg-opacity:1;background-color:rgb(248 250 252 / var(--tw-bg-opacity, 1))}.bg-slate-900{--tw-bg-opacity:1;background-color:rgb(15 23 42 / var(--tw-bg-opacity, 1))}.bg-slate-900\/40{background-color:rgb(15 23 42 / 0.4)}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.p-1{padding:0.25rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.px-1{padding-left:0.25rem;padding-right:0.25rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.px-2\.5{padding-left:0.625rem;padding-right:0.625rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.py-0\.5{padding-top:0.125rem;padding-bottom:0.125rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-1\.5{padding-top:0.375rem;padding-bottom:0.375rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-2\.5{padding-top:0.625rem;padding-bottom:0.625rem}.py-8{padding-top:2rem;padding-bottom:2rem}.pb-2{padding-bottom:0.5rem}.pb-3{padding-bottom:0.75rem}.pt-1{padding-top:0.25rem}.pt-2{padding-top:0.5rem}.font-mono{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}.font-serif{font-family:ui-serif, Georgia, Cambria, "Times New Roman", Times, serif}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-normal{font-weight:400}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.italic{font-style:italic}.leading-none{line-height:1}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-wider{letter-spacing:0.05em}.text-emerald-400{--tw-text-opacity:1;color:rgb(52 211 153 / var(--tw-text-opacity, 1))}.text-indigo-700{--tw-text-opacity:1;color:rgb(67 56 202 / var(--tw-text-opacity, 1))}.text-indigo-800{--tw-text-opacity:1;color:rgb(55 48 163 / var(--tw-text-opacity, 1))}.text-red-600{--tw-text-opacity:1;color:rgb(220 38 38 / var(--tw-text-opacity, 1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184 / var(--tw-text-opacity, 1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139 / var(--tw-text-opacity, 1))}.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105 / var(--tw-text-opacity, 1))}.text-slate-700{--tw-text-opacity:1;color:rgb(51 65 85 / var(--tw-text-opacity, 1))}.text-slate-800{--tw-text-opacity:1;color:rgb(30 41 59 / var(--tw-text-opacity, 1))}.text-slate-900{--tw-text-opacity:1;color:rgb(15 23 42 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.opacity-0{opacity:0}.opacity-100{opacity:1}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-opacity{transition-property:opacity;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-200{transition-duration:200ms}.hover\:border-indigo-500:hover{--tw-border-opacity:1;border-color:rgb(99 102 241 / var(--tw-border-opacity, 1))}.hover\:bg-emerald-700:hover{--tw-bg-opacity:1;background-color:rgb(4 120 87 / var(--tw-bg-opacity, 1))}.hover\:bg-indigo-100:hover{--tw-bg-opacity:1;background-color:rgb(224 231 255 / var(--tw-bg-opacity, 1))}.hover\:bg-indigo-50:hover{--tw-bg-opacity:1;background-color:rgb(238 242 255 / var(--tw-bg-opacity, 1))}.hover\:bg-indigo-700:hover{--tw-bg-opacity:1;background-color:rgb(67 56 202 / var(--tw-bg-opacity, 1))}.hover\:bg-red-50:hover{--tw-bg-opacity:1;background-color:rgb(254 242 242 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-200:hover{--tw-bg-opacity:1;background-color:rgb(226 232 240 / var(--tw-bg-opacity, 1))}.hover\:text-red-700:hover{--tw-text-opacity:1;color:rgb(185 28 28 / var(--tw-text-opacity, 1))}.hover\:text-slate-600:hover{--tw-text-opacity:1;color:rgb(71 85 105 / var(--tw-text-opacity, 1))}.hover\:text-slate-800:hover{--tw-text-opacity:1;color:rgb(30 41 59 / var(--tw-text-opacity, 1))}.hover\:text-slate-900:hover{--tw-text-opacity:1;color:rgb(15 23 42 / var(--tw-text-opacity, 1))}.focus\:border-indigo-500:focus{--tw-border-opacity:1;border-color:rgb(99 102 241 / var(--tw-border-opacity, 1))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.focus\:ring-2:focus{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)}.focus\:ring-indigo-500:focus{--tw-ring-opacity:1;--tw-ring-color:rgb(99 102 241 / var(--tw-ring-opacity, 1))}</style></head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen py-8 px-4 flex flex-col items-center">
+
+  <div class="w-full max-w-3xl space-y-6">
+    <!-- Header -->
+    <header class="flex items-center justify-between pb-3 border-b border-slate-200">
+      <div class="flex items-center space-x-2.5">
+        <span class="px-2.5 py-1 bg-indigo-100 text-indigo-700 rounded-lg text-lg font-bold font-mono">⟦  ⟧</span>
+        <div>
+          <h1 class="text-lg font-bold text-slate-900 leading-tight">Semantics Notation Helper</h1>
+          <!--p class="text-xs text-slate-500">Fast, clean formulas &amp; symbols for Google Docs &amp; MS Word</p-->
+          <p class="text-xs text-slate-500">Click symbols, build formulas &amp; copy them with formatting intact.</p>
+          <!-- <p class="text-xs text-slate-500">Because formatting <span>[ · ]<sup><i>M,g<sub>x</sub><sup>val</sup></i></sup></span> in Google Docs / MS Word is painful.</p> -->
+        </div>
+      </div>
+      <button type="button" onmousedown="event.preventDefault()" onclick="clearCanvas()" class="text-xs text-red-600 hover:text-red-700 font-medium px-2 py-1 rounded hover:bg-red-50 transition">
+        Clear All
+      </button>
+    </header>
+
+    <!-- PRIMARY FORMULA WORKSPACE -->
+    <section class="bg-white border-2 border-slate-200 rounded-2xl p-5 shadow-sm space-y-3">
+      <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Formula Workspace</span>
+        <!--<div class="text-[11px] text-slate-400">Click anywhere to place cursor, or leave blank to append at the end</div> -->
+      </div>
+
+      <!-- Interactive editor box -->
+      <div id="formula-canvas" contenteditable="true" data-placeholder="Type here or click symbols below to build your expression..." class="w-full min-h-[110px] p-4 bg-white border border-slate-300 rounded-xl text-xl math-font text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 leading-relaxed transition">[T(x) → (B(x), L(x, h))]</div>
+
+      <!-- Toolbar for specific features AKA shortcuts -->
+      <div class="flex flex-wrap items-center justify-between gap-2 pt-1">
+        <div class="flex flex-wrap items-center gap-1.5 text-xs">
+          <!-- Model M Button -->
+          <button type="button" onmousedown="event.preventDefault()" onclick="insertModelSup()" class="btn-tactile px-2.5 py-1.5 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 text-indigo-800 rounded-lg font-semibold flex items-center gap-1 transition" title="Attach Model superscript: ^M">
+            <span>[ · ]<sup><i>M</i></sup></span>
+          </button>
+
+          <!-- Model + Assignment g button -->
+          <button type="button" onmousedown="event.preventDefault()" onclick="insertModelAssignSup()" class="btn-tactile px-2.5 py-1.5 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 text-indigo-800 rounded-lg font-semibold flex items-center gap-1 transition" title="Attach Model &amp; assignment superscript: ^M,g">
+            <span>[ · ]<sup><i>M,g</i></sup></span>
+          </button>
+
+          <!-- Modified assignment button with a value input (individkonstanter)-->
+          <button type="button" onmousedown="event.preventDefault()" onclick="openModifiedAssignModal()" class="btn-tactile px-2.5 py-1.5 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 text-indigo-800 rounded-lg font-semibold flex items-center gap-1 transition" title="Modified assignment - individkonstanter: ^M,g_x^val">
+            <span>[ · ]<sup><i>M,g<sub>x</sub><sup>val</sup></i></sup></span>
+          </button>
+          <!-- <button type="button" onmousedown="event.preventDefault()" onclick="openModifiedAssignModal()" class="btn-tactile px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-semibold flex items-center gap-1 shadow-sm transition" title="Modified assignment - individkonstanter: ^M,g_x^val">
+            <span>[ · ]<sup><i>M,g<sub>x</sub><sup>val</sup></i></sup></span>
+          </button> -->
+
+          <span class="border-l border-slate-300 h-5 mx-0.5"></span>
+
+          <!-- Prompted superscript button -->
+          <button type="button" onmousedown="event.preventDefault()" onclick="openSimpleScriptModal('sup')" class="btn-tactile px-2.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 rounded-lg font-medium transition" title="Add specific superscript">
+            X<sup>y</sup>
+          </button>
+
+          <!-- Prompted subscript button -->
+          <button type="button" onmousedown="event.preventDefault()" onclick="openSimpleScriptModal('sub')" class="btn-tactile px-2.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 rounded-lg font-medium transition" title="Add specific subscript">
+            X<sub>y</sub>
+          </button>
+        </div>
+
+        <!-- Copy for Docs / Word button -->
+        <button type="button" onmousedown="event.preventDefault()" onclick="copyToClipboardForDocs()" class="btn-tactile px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl shadow-sm flex items-center gap-1.5 transition ml-auto" title="Copies formatted formula cleanly for pasting in Word or Docs">
+          <!-- <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>-->
+          <span>📋 Copy for Google Docs / MS Word</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- SYMBOLS PALETTE -->
+    <section class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-4">
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-3">
+        <div>
+          <h2 class="text-xs font-bold uppercase tracking-wider text-slate-500">Symbol Palette</h2>
+          <p id="palette-hint" class="text-[11px] text-slate-400 mt-0.5">Clicking any symbol inserts it directly in the workspace.</p>
+        </div>
+        <!-- 2 MODES: Insert the symbol in the workspace or only copy the symbol to the cliboard-->
+        <!-- Mode toggle: INSERT vs COPY -->
+        <div class="inline-flex p-1 bg-slate-100 rounded-xl border border-slate-200 text-xs">
+          <button id="mode-insert-btn" type="button" onmousedown="event.preventDefault()" onclick="setPaletteMode('insert')" class="px-3 py-1 font-semibold rounded-lg bg-white text-indigo-700 shadow-sm transition">
+            ✏️ Insert into formula
+          </button>
+          <button id="mode-copy-btn" type="button" onmousedown="event.preventDefault()" onclick="setPaletteMode('copy')" class="px-3 py-1 font-semibold rounded-lg text-slate-600 hover:text-slate-900 transition">
+            📋 Copy symbol only
+          </button>
+        </div>
+      </div>
+
+      <div class="space-y-4">
+        <!-- 1. All brackets -->
+        <div>
+          <span class="text-xs font-semibold text-slate-600 mb-1.5 block">Brackets &amp; Tuples</span>
+          <div class="flex flex-wrap gap-1.5">
+            <!--<button type="button" onmousedown="event.preventDefault()" onclick="handlePaletteAction('⟦')" class="btn-tactile w-11 h-10 border border-slate-200 rounded-lg hover:border-indigo-500 hover:bg-indigo-50 text-base font-serif flex items-center justify-center transition" title="Left denotation bracket">⟦</button>-->
+            <!--<button type="button" onmousedown="event.preventDefault()" onclick="handlePaletteAction('⟧')" class="btn-tactile w-11 h-10 border border-slate-200 rounded-lg hover:border-indigo-500 hover:bg-indigo-50 text-base font-serif flex items-center justify-center transition" title="Right denotation bracket">⟧</button>-->
+            <button type="button" onmousedown="event.preventDefault()" onclick="handlePaletteAction('[')" class="btn-tactile w-11 h-10 border border-slate-200 rounded-lg hover:border-indigo-500 hover:bg-indigo-50 text-base font-serif flex items-center justify-center transition">[</button>
+            <button type="button" onmousedown="event.preventDefault()" onclick="handlePaletteAction(']')" class="btn-tactile w-11 h-10 border border-slate-200 rounded-lg hover:border-indigo-500 hover:bg-indigo-50 text-base font-serif flex items-center justify-center transition">]</button>
+            <button type="button" onmousedown="event.preventDefault()" onclick="handlePaletteAction('(')" class="btn-tactile w-11 h-10 border border-slate-200 rounded-lg hover:border-indigo-500 hover:bg-indigo-50 text-base font-serif flex items-center justify-center transition">(</button>
+            <button type="button" onmousedown="event.preventDefault()" onclick="handlePaletteAction(')')" class="btn-tactile w-11 h-10 border border-slate-200 rounded-lg hover:border-indigo-500 hover:bg-indigo-50 text-base font-serif flex items-center justify-center transition">)</button>
+            <button type="button" onmousedown="event.preventDefault()" onclick="handlePaletteAction('{')" class="btn-tactile w-11 h-10 border border-slate-200 rounded-lg hover:border-indigo-500 hover:bg-indigo-50 text-base font-serif flex items-center justify-center transition">{</button>
+            <button type="button" onmousedown="event.preventDefault()" onclick="handlePaletteAction('}')" class="btn-tactile w-11 h-10 border border-slate-200 rounded-lg hover:border-indigo-500 hover:bg-indigo-50 text-base font-serif flex items-center justify-center transition">}</button>
+            <button type="button" onmousedown="event.preventDefault()" onclick="handlePaletteAction('⟨')" class="btn-tactile w-11 h-10 border border-slate-200 rounded-lg hover:border-indigo-500 hover:bg-indigo-50 text-base font-serif flex items-center justify-center transition" title="Left angle bracket">⟨</button>
+            <button type="button" onmousedown="event.preventDefault()" onclick="handlePaletteAction('⟩')" class="btn-tactile w-11 h-10 border border-slate-200 rounded-lg hover:border-indigo-500 hover:bg-indigo-50 text-base font-serif flex items-center justify-center transition" title="Right angle bracket">⟩</button>
+          </div>
+        </div>
+
+        <!-- 2. Logical connectives & Relations -->
+        <div>
+          <span class="text-xs font-semibold text-slate-600 mb-1.5 block">Logical connectives &amp; Relations</span>
+          <div class="flex flex-wrap gap-1.5">
+            <button type="button" onmousedown="event.preventDefault()" onclick="handlePaletteAction('¬')" class="btn-tactile w-11 h-10 border border-slate-200 rounded-lg hover:border-indigo-500 hover:bg-indigo-50 text-base font-serif flex items-center justify-center transition" title="Negation (NOT)">¬</button>
+            <button type="button" onmousedown="event.preventDefault()" onclick="handlePaletteAction('~')" class="btn-tactile w-11 h-10 border border-slate-200 rounded-lg hover:border-indigo-500 hover:bg-indigo-50 text-base font-serif flex items-center justify-center transition" title="Negation (NOT)">~</button>
+            <button type="button" onmousedown="event.preventDefault()" onclick="handlePaletteAction('∧')" class="btn-tactile w-11 h-10 border border-slate-200 rounded-lg hover:border-indigo-500 hover:bg-indigo-50 text-base font-serif flex items-center justify-center transition" title="Conjunction (AND)">∧</button>
+            <button type="button" onmousedown="event.preventDefault()" onclick="handlePaletteAction('&')" class="btn-tactile w-11 h-10 border border-slate-200 rounded-lg hover:border-indigo-500 hover:bg-indigo-50 text-base font-serif flex items-center justify-center transition" title="Conjunction (AND)">&</button>
+            <button type="button" onmousedown="event.preventDefault()" onclick="handlePaletteAction('∨')" class="btn-tactile w-11 h-10 border border-slate-200 rounded-lg hover:border-indigo-500 hover:bg-indigo-50 text-base font-serif flex items-center justify-center transition" title="Disjunction (OR)">∨</button>
+            <button type="button" onmousedown="event.preventDefault()" onclick="handlePaletteAction('→')" class="btn-tactile w-11 h-10 border border-slate-200 rounded-lg hover:border-indigo-500 hover:bg-indigo-50 text-base font-serif flex items-center justify-center transition" title="Implication">→</button>
+            <button type="button" onmousedown="event.preventDefault()" onclick="handlePaletteAction('≡')" class="btn-tactile w-11 h-10 border border-slate-200 rounded-lg hover:border-indigo-500 hover:bg-indigo-50 text-base font-serif flex items-center justify-center transition" title="Equivalence">≡</button>
+            <button type="button" onmousedown="event.preventDefault()" onclick="handlePaletteAction('↔')" class="btn-tactile w-11 h-10 border border-slate-200 rounded-lg hover:border-indigo-500 hover:bg-indigo-50 text-base font-serif flex items-center justify-center transition" title="Equivalence">↔</button>
+            <button type="button" onmousedown="event.preventDefault()" onclick="handlePaletteAction('⊻')" class="btn-tactile w-11 h-10 border border-slate-200 rounded-lg hover:border-indigo-500 hover:bg-indigo-50 text-base font-serif flex items-center justify-center transition" title="Exclusive disjunction (XOR)">⊻</button>
+            <button type="button" onmousedown="event.preventDefault()" onclick="handlePaletteAction('⊕')" class="btn-tactile w-11 h-10 border border-slate-200 rounded-lg hover:border-indigo-500 hover:bg-indigo-50 text-base font-serif flex items-center justify-center transition" title="Exclusive disjunction (XOR)">⊕</button>
+            <button type="button" onmousedown="event.preventDefault()" onclick="handlePaletteAction('=')" class="btn-tactile w-11 h-10 border border-slate-200 rounded-lg hover:border-indigo-500 hover:bg-indigo-50 text-base font-serif flex items-center justify-center transition" title="Equal">=</button>
+            <button type="button" onmousedown="event.preventDefault()" onclick="handlePaletteAction('≠')" class="btn-tactile w-11 h-10 border border-slate-200 rounded-lg hover:border-indigo-500 hover:bg-indigo-50 text-base font-serif flex items-center justify-center transition" title="Not equal">≠</button>
+            <button type="button" onmousedown="event.preventDefault()" onclick="handlePaletteAction('omm')" class="btn-tactile w-11 h-10 border border-slate-200 rounded-lg hover:border-indigo-500 hover:bg-indigo-50 text-base font-serif flex items-center justify-center transition" title="Om och endast om">¬</button>
+            <button type="button" onmousedown="event.preventDefault()" onclick="handlePaletteAction('iff')" class="btn-tactile w-11 h-10 border border-slate-200 rounded-lg hover:border-indigo-500 hover:bg-indigo-50 text-base font-serif flex items-center justify-center transition" title="If and only if">¬</button>
+        </div>
+        </div>
+
+        <!-- 3. Quantifiers & Variables -->
+        <div>
+          <span class="text-xs font-semibold text-slate-600 mb-1.5 block">Quantifiers &amp; Variables</span>
+          <div class="flex flex-wrap gap-1.5">
+            <button type="button" onmousedown="event.preventDefault()" onclick="handlePaletteAction('∀')" class="btn-tactile w-11 h-10 border border-slate-200 rounded-lg hover:border-indigo-500 hover:bg-indigo-50 text-base font-serif flex items-center justify-center transition" title="For all">∀</button>
+            <button type="button" onmousedown="event.preventDefault()" onclick="handlePaletteAction('∃')" class="btn-tactile w-11 h-10 border border-slate-200 rounded-lg hover:border-indigo-500 hover:bg-indigo-50 text-base font-serif flex items-center justify-center transition" title="Exists">∃</button>
+            <button type="button" onmousedown="event.preventDefault()" onclick="handlePaletteAction('x')" class="btn-tactile w-11 h-10 border border-slate-200 rounded-lg hover:border-indigo-500 hover:bg-indigo-50 text-base font-serif italic flex items-center justify-center transition">x</button>
+            <button type="button" onmousedown="event.preventDefault()" onclick="handlePaletteAction('y')" class="btn-tactile w-11 h-10 border border-slate-200 rounded-lg hover:border-indigo-500 hover:bg-indigo-50 text-base font-serif italic flex items-center justify-center transition">y</button>
+            <button type="button" onmousedown="event.preventDefault()" onclick="handlePaletteAction('z')" class="btn-tactile w-11 h-10 border border-slate-200 rounded-lg hover:border-indigo-500 hover:bg-indigo-50 text-base font-serif italic flex items-center justify-center transition">z</button>
+          </div>
+        </div>
+
+        <!-- 4. Set Theory -->
+        <div>
+          <span class="text-xs font-semibold text-slate-600 mb-1.5 block">Set Theory</span>
+          <div class="flex flex-wrap gap-1.5">
+            <button type="button" onmousedown="event.preventDefault()" onclick="handlePaletteAction('∈')" class="btn-tactile w-11 h-10 border border-slate-200 rounded-lg hover:border-indigo-500 hover:bg-indigo-50 text-base font-serif flex items-center justify-center transition" title="Element of">∈</button>
+            <button type="button" onmousedown="event.preventDefault()" onclick="handlePaletteAction('∉')" class="btn-tactile w-11 h-10 border border-slate-200 rounded-lg hover:border-indigo-500 hover:bg-indigo-50 text-base font-serif flex items-center justify-center transition" title="Not element of">∉</button>
+            <button type="button" onmousedown="event.preventDefault()" onclick="handlePaletteAction('⊆')" class="btn-tactile w-11 h-10 border border-slate-200 rounded-lg hover:border-indigo-500 hover:bg-indigo-50 text-base font-serif flex items-center justify-center transition" title="Subset or equal">⊆</button>
+            <button type="button" onmousedown="event.preventDefault()" onclick="handlePaletteAction('⊂')" class="btn-tactile w-11 h-10 border border-slate-200 rounded-lg hover:border-indigo-500 hover:bg-indigo-50 text-base font-serif flex items-center justify-center transition" title="Proper subset">⊂</button>
+            <button type="button" onmousedown="event.preventDefault()" onclick="handlePaletteAction('∪')" class="btn-tactile w-11 h-10 border border-slate-200 rounded-lg hover:border-indigo-500 hover:bg-indigo-50 text-base font-serif flex items-center justify-center transition" title="Union">∪</button>
+            <button type="button" onmousedown="event.preventDefault()" onclick="handlePaletteAction('∩')" class="btn-tactile w-11 h-10 border border-slate-200 rounded-lg hover:border-indigo-500 hover:bg-indigo-50 text-base font-serif flex items-center justify-center transition" title="Intersection">∩</button>
+            <button type="button" onmousedown="event.preventDefault()" onclick="handlePaletteAction('∅')" class="btn-tactile w-11 h-10 border border-slate-200 rounded-lg hover:border-indigo-500 hover:bg-indigo-50 text-base font-serif flex items-center justify-center transition" title="Empty set">∅</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+<!-- MODIFIED ASSIGNMENT MINI-MODAL -->
+  <div id="assign-modal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-200 space-y-5">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <h3 class="font-bold text-slate-900 text-base">Add value to variable</h3>
+        <button type="button" onclick="closeModifiedAssignModal()" class="text-slate-400 hover:text-slate-600 text-2xl leading-none px-1">×</button>
+      </div>
+
+      <p class="text-sm text-slate-600 leading-relaxed">
+        This inserts the superscript <span class="font-serif font-bold text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded text-base">M,g<sub>x</sub><sup>val</sup></span>. Enter the value you want to assign to <span class="font-serif font-semibold">val</span>:
+      </p>
+
+      <div>
+        <label class="block text-sm font-semibold text-slate-700 mb-1.5">
+          Value for <span class="font-serif italic font-bold">val</span>
+        </label>
+        <input id="modal-individual-val" type="text" value="Harry" class="w-full text-base font-serif px-3.5 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none" placeholder="e.g. Harry, c, d, a..." onkeydown="if(event.key === 'Enter') submitModifiedAssign()">
+        <span class="text-xs text-slate-500 mt-2 block">
+          Example: entering <code class="bg-slate-100 text-slate-800 px-1 py-0.5 rounded font-mono">Harry</code> outputs <sup><i>M,g</i><sub>x</sub><sup>Harry</sup></sup>
+        </span>
+      </div>
+
+      <div class="flex items-center justify-end gap-3 pt-3 border-t border-slate-100">
+        <button type="button" onclick="closeModifiedAssignModal()" class="px-4 py-2 text-sm text-slate-600 hover:text-slate-800 rounded-lg">Cancel</button>
+        <button type="button" onclick="submitModifiedAssign()" class="px-5 py-2.5 text-sm font-semibold bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl shadow-sm transition">
+          Insert superscript
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIMPLE SCRIPT (SUB / SUP) MODAL -->
+  <div id="simple-script-modal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-200 space-y-5">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <h3 id="simple-script-title" class="font-bold text-slate-900 text-base">Add superscript</h3>
+        <button type="button" onclick="closeSimpleScriptModal()" class="text-slate-400 hover:text-slate-600 text-2xl leading-none px-1">×</button>
+      </div>
+
+      <div>
+        <label id="simple-script-label" class="block text-sm font-semibold text-slate-700 mb-1.5">Enter text:</label>
+        <input id="simple-script-input" type="text" class="w-full text-base font-serif px-3.5 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none" placeholder="e.g. 1, 2, i, n, x..." onkeydown="if(event.key === 'Enter') submitSimpleScript()">
+        <!--<span id="simple-script-hint" class="text-xs text-slate-500 mt-2 block">Appends the script and returns the cursor directly to regular text.</span>-->
+      </div>
+
+      <div class="flex items-center justify-end gap-3 pt-3 border-t border-slate-100">
+        <button type="button" onclick="closeSimpleScriptModal()" class="px-4 py-2 text-sm text-slate-600 hover:text-slate-800 rounded-lg">Cancel</button>
+        <button type="button" onclick="submitSimpleScript()" class="px-5 py-2.5 text-sm font-semibold bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl shadow-sm transition">
+          Insert
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-5 right-5 bg-slate-900 text-white px-4 py-2.5 rounded-xl shadow-2xl text-xs font-medium transition-opacity duration-200 pointer-events-none z-50 flex items-center gap-2 opacity-0">
+    <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+    <span id="toast-msg">Inserted M,g_x^Harry</span>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('formula-canvas');
+    let currentScriptMode = 'sup'; // 'sup' or 'sub'
+    let paletteMode = 'insert';    // 'insert' or 'copy'
+    const CARET_MARKER_ID = '__studio_caret_anchor__';
+
+    // Remove any leftover caret marker elements in the DOM
+    function clearCaretMarker() {
+      const existing = document.getElementById(CARET_MARKER_ID);
+      if (existing) {
+        existing.remove();
+      }
+    }
+
+    // Drops an invisible anchor tag at the current cursor position.
+    // If no valid cursor exists inside canvas, it anchors at the VERY END of the canvas.
+    function saveCaretPosition() {
+      clearCaretMarker();
+
+      const sel = window.getSelection();
+      let range = null;
+
+      if (sel && sel.rangeCount > 0) {
+        const testRange = sel.getRangeAt(0);
+        // Only use the selection if it is strictly located inside our canvas
+        if (canvas.contains(testRange.commonAncestorContainer)) {
+          range = testRange.cloneRange();
+        }
+      }
+
+      // If no valid active selection was found inside the editor, anchor to the END
+      if (!range) {
+        range = document.createRange();
+        range.selectNodeContents(canvas);
+        range.collapse(false); // false = end
+      }
+
+      // Insert anchor span
+      const marker = document.createElement('span');
+      marker.id = CARET_MARKER_ID;
+      marker.style.display = 'none';
+      marker.style.lineHeight = '0';
+      marker.style.height = '0';
+      marker.style.width = '0';
+
+      range.insertNode(marker);
+    }
+
+    // Inserts HTML or Text exactly where the anchor marker is located, then cleans up
+    function insertAtSavedCaret(htmlContent) {
+      canvas.focus();
+      let marker = document.getElementById(CARET_MARKER_ID);
+
+      // If marker doesn't exist, append it at the very end
+      if (!marker || !canvas.contains(marker)) {
+        clearCaretMarker();
+        marker = document.createElement('span');
+        marker.id = CARET_MARKER_ID;
+        marker.style.display = 'none';
+        canvas.appendChild(marker);
+      }
+
+      // Create a fragment from the HTML content
+      const tempWrapper = document.createElement('div');
+      tempWrapper.innerHTML = htmlContent;
+
+      const frag = document.createDocumentFragment();
+      let lastNode = null;
+      while (tempWrapper.firstChild) {
+        lastNode = tempWrapper.firstChild;
+        frag.appendChild(lastNode);
+      }
+
+      // Insert fragment before marker, then remove marker
+      marker.parentNode.insertBefore(frag, marker);
+      marker.remove();
+
+      // Reposition cursor immediately after the inserted content
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      const newRange = document.createRange();
+
+      if (lastNode) {
+        newRange.setStartAfter(lastNode);
+        newRange.collapse(true);
+      } else {
+        newRange.selectNodeContents(canvas);
+        newRange.collapse(false);
+      }
+
+      sel.addRange(newRange);
+      canvas.focus();
+    }
+
+    // Whenever user types or clicks directly inside the canvas, record position
+    ['keyup', 'mouseup', 'touchend', 'input'].forEach(evt => {
+      canvas.addEventListener(evt, () => {
+        // Clear any old marker so active typing remains clean
+        clearCaretMarker();
+      });
+    });
+
+    // Clear formula workspace
+    function clearCanvas() {
+      canvas.innerHTML = '';
+      clearCaretMarker();
+      canvas.focus();
+      showToast('Cleared workspace');
+    }
+
+    // Palette mode switcher (Insert into canvas vs Copy symbol only)
+    function setPaletteMode(mode) {
+      paletteMode = mode;
+      const insertBtn = document.getElementById('mode-insert-btn');
+      const copyBtn = document.getElementById('mode-copy-btn');
+      const hint = document.getElementById('palette-hint');
+
+      if (mode === 'insert') {
+        insertBtn.className = 'px-3 py-1 font-semibold rounded-lg bg-white text-indigo-700 shadow-sm transition';
+        copyBtn.className = 'px-3 py-1 font-semibold rounded-lg text-slate-600 hover:text-slate-900 transition';
+        hint.textContent = 'Clicking any symbol inserts it directly in the workspace.';
+      } else {
+        copyBtn.className = 'px-3 py-1 font-semibold rounded-lg bg-white text-indigo-700 shadow-sm transition';
+        insertBtn.className = 'px-3 py-1 font-semibold rounded-lg text-slate-600 hover:text-slate-900 transition';
+        hint.textContent = 'Clicking any symbol copies only that symbol directly to your clipboard.';
+      }
+    }
+
+    // Handles click on any palette symbol button
+    function handlePaletteAction(char) {
+      if (paletteMode === 'insert') {
+        saveCaretPosition();
+        insertAtSavedCaret(escapeHtml(char));
+      } else {
+        copySingleCharacter(char);
+      }
+    }
+
+    // Single character clipboard copy
+    function copySingleCharacter(char) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(char).then(() => {
+          showToast(`Copied "${char}" to clipboard!`);
+        }).catch(() => {
+          fallbackTextCopy(char);
+        });
+      } else {
+        fallbackTextCopy(char);
+      }
+    }
+
+    function fallbackTextCopy(text) {
+      const temp = document.createElement('textarea');
+      temp.value = text;
+      temp.style.position = 'fixed';
+      temp.style.opacity = '0';
+      document.body.appendChild(temp);
+      temp.select();
+      document.execCommand('copy');
+      document.body.removeChild(temp);
+      showToast(`Copied "${text}" to clipboard!`);
+    }
+
+    // Direct Model superscript [ · ]^M
+    function insertModelSup() {
+      saveCaretPosition();
+      insertAtSavedCaret('<sup><i>M</i></sup>&nbsp;');
+      showToast('Inserted model superscript M');
+    }
+
+    // Direct Model + assignment superscript [ · ]^M,g
+    function insertModelAssignSup() {
+      saveCaretPosition();
+      insertAtSavedCaret('<sup><i>M,g</i></sup>&nbsp;');
+      showToast('Inserted model & assignment superscript M,g');
+    }
+
+    // Modal: Modified assignment [ · ]^M,g_x^val
+    function openModifiedAssignModal() {
+      saveCaretPosition();
+      const modal = document.getElementById('assign-modal');
+      modal.classList.remove('hidden');
+      const input = document.getElementById('modal-individual-val');
+      input.focus();
+      input.select();
+    }
+
+    function closeModifiedAssignModal() {
+      document.getElementById('assign-modal').classList.add('hidden');
+      canvas.focus();
+    }
+
+    function submitModifiedAssign() {
+      const val = document.getElementById('modal-individual-val').value.trim() || 'Harry';
+      closeModifiedAssignModal();
+      insertAtSavedCaret(`<sup><i>M,g</i><sub>x</sub><sup>${escapeHtml(val)}</sup></sup>&nbsp;`);
+      showToast(`Inserted M,g_x^${val}`);
+    }
+
+    // Modal: Simple script (X^y or X_y)
+    function openSimpleScriptModal(type) {
+      currentScriptMode = type;
+      saveCaretPosition();
+
+      const modal = document.getElementById('simple-script-modal');
+      const title = document.getElementById('simple-script-title');
+      const label = document.getElementById('simple-script-label');
+      const hint = document.getElementById('simple-script-hint');
+      const input = document.getElementById('simple-script-input');
+
+      if (type === 'sup') {
+        title.textContent = 'Add Superscript';
+        label.textContent = 'Enter superscript text:';
+        //hint.innerHTML = 'Inserts <sup>text</sup> and automatically returns your cursor to normal text.';
+        input.value = '0';
+      } else {
+        title.textContent = 'Add Subscript';
+        label.textContent = 'Enter subscript text:';
+        //hint.innerHTML = 'Inserts <sub>text</sub> and automatically returns your cursor to normal text.';
+        input.value = '0';
+      }
+
+      modal.classList.remove('hidden');
+      input.focus();
+      input.select();
+    }
+
+    function closeSimpleScriptModal() {
+      document.getElementById('simple-script-modal').classList.add('hidden');
+      canvas.focus();
+    }
+
+    function submitSimpleScript() {
+      const val = document.getElementById('simple-script-input').value.trim();
+      closeSimpleScriptModal();
+
+      if (!val) return;
+      const tag = currentScriptMode === 'sup' ? 'sup' : 'sub';
+      insertAtSavedCaret(`<${tag}>${escapeHtml(val)}</${tag}>&nbsp;`);
+      showToast(`Inserted ${currentScriptMode === 'sup' ? 'superscript' : 'subscript'} "${val}"`);
+    }
+
+    // Modal escape key listener
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeModifiedAssignModal();
+        closeSimpleScriptModal();
+      }
+    });
+
+    // Sanitizes inner content to remove background colors and shadows when pasting into Google Docs or Word
+    function getCleanExportHtml() {
+      clearCaretMarker();
+      const clone = document.createElement('div');
+      clone.innerHTML = canvas.innerHTML;
+
+      const allElements = clone.querySelectorAll('*');
+      allElements.forEach(el => {
+        el.removeAttribute('class');
+        if (el.tagName !== 'I' && el.tagName !== 'EM' && el.tagName !== 'SUP' && el.tagName !== 'SUB') {
+          el.removeAttribute('style');
+        }
+      });
+
+      const cleanInner = clone.innerHTML;
+      return `<span style="background-color: transparent !important; background: transparent !important; box-shadow: none !important; border: none !important; color: #000000; font-family: 'Cambria Math', 'Times New Roman', Times, serif; font-size: 12pt;">${cleanInner}</span>`;
+    }
+
+    // Copy formatted formula into clipboard for Google Docs & Word
+    function copyToClipboardForDocs() {
+      clearCaretMarker();
+      const plainText = canvas.innerText;
+      if (!plainText.trim() && !canvas.innerHTML.trim()) {
+        showToast('Nothing to copy! Type a formula first.');
+        return;
+      }
+
+      const cleanHtml = getCleanExportHtml();
+
+      try {
+        const blobHtml = new Blob([cleanHtml], { type: 'text/html' });
+        const blobText = new Blob([plainText], { type: 'text/plain' });
+
+        const clipboardItem = new ClipboardItem({
+          'text/html': blobHtml,
+          'text/plain': blobText
+        });
+
+        navigator.clipboard.write([clipboardItem]).then(() => {
+          showToast('Copied cleanly! Paste into Docs or Word');
+        }).catch(() => {
+          fallbackCleanCopy(cleanHtml);
+        });
+      } catch (e) {
+        fallbackCleanCopy(cleanHtml);
+      }
+    }
+
+    function fallbackCleanCopy(cleanHtml) {
+      const tempDiv = document.createElement('div');
+      tempDiv.setAttribute('style', 'position: absolute; left: -9999px; top: -9999px; background: transparent;');
+      tempDiv.contentEditable = 'true';
+      tempDiv.innerHTML = cleanHtml;
+      document.body.appendChild(tempDiv);
+      tempDiv.focus();
+      document.execCommand('selectAll', false, null);
+      document.execCommand('copy');
+      document.body.removeChild(tempDiv);
+      showToast('Copied cleanly! Paste into Docs or Word');
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-msg').textContent = msg;
+      toast.classList.remove('opacity-0');
+      toast.classList.add('opacity-100');
+      clearTimeout(window.toastTimer);
+      window.toastTimer = setTimeout(() => {
+        toast.classList.remove('opacity-100');
+        toast.classList.add('opacity-0');
+      }, 1800);
+    }
+
+    // Place caret at the very end of default text on initial page load
+    window.addEventListener('DOMContentLoaded', () => {
+      const range = document.createRange();
+      range.selectNodeContents(canvas);
+      range.collapse(false);
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+    });
+  </script>
+
+</body></html>
