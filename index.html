@@ -37,9 +37,11 @@
           <!-- <p class="text-xs text-slate-500">Because formatting <span>[ · ]<sup><i>M,g<sub>x</sub><sup>val</sup></i></sup></span> in Google Docs / MS Word is painful.</p> -->
         </div>
       </div>
+      <!--
       <button type="button" onmousedown="event.preventDefault()" onclick="clearCanvas()" class="text-xs text-red-600 hover:text-red-700 font-medium px-2 py-1 rounded hover:bg-red-50 transition">
         Clear All
       </button>
+      -->
     </header>
 
     <!-- PRIMARY FORMULA WORKSPACE -->
@@ -47,6 +49,11 @@
       <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-3">
         <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Formula Workspace</span>
         <!--<div class="text-[11px] text-slate-400">Click anywhere to place cursor, or leave blank to append at the end</div> -->
+        <!--<div class="text-[11px] text-slate-400">Clear All</div> -->
+        <!-- Added botton below-->
+        <button type="button" onmousedown="event.preventDefault()" onclick="clearCanvas()" class="text-xs text-red-600 hover:text-red-700 font-medium px-2 py-1 rounded hover:bg-red-50 transition">
+        Clear All
+      </button>
       </div>
 
       <!-- Interactive editor box -->
@@ -68,7 +75,7 @@
         
 
             <span class="border-l border-slate-300 h-5 mx-0.5"></span>
-            
+
           
             <!-- Model M Button -->
           <button type="button" onmousedown="event.preventDefault()" onclick="insertModelSup()" class="btn-tactile px-2.5 py-1.5 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 text-indigo-800 rounded-lg font-semibold flex items-center gap-1 transition" title="Attach Model superscript: ^M">
